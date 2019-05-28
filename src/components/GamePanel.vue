@@ -11,32 +11,14 @@
     <transition
       name="custom-classes-transition"
       enter-active-class="animated tada"
-      leave-active-class="animated bounceOutRight"
+      leave-active-class="animated bounceOutRight" mode="out-in"
     >
       <div class="slide slide-0" v-if="displaySlide(0)"></div>
-    </transition>
 
-    <transition
-      name="custom-classes-transition"
-      enter-active-class="animated tada"
-      leave-active-class="animated bounceOutRight"
-    >
       <DisclaimerSlide v-if="displaySlide(1)" />
-    </transition>
 
-    <transition
-      name="custom-classes-transition"
-      enter-active-class="animated tada"
-      leave-active-class="animated bounceOutRight"
-    >
       <WelcomeSlide v-if="displaySlide(2)" />
-    </transition>
 
-    <transition
-      name="custom-classes-transition"
-      enter-active-class="animated tada"
-      leave-active-class="animated bounceOutRight"
-    >
       <QuestionPanel :questions="nextSet" @selected="addQuestion" v-if="displaySlide(3)"></QuestionPanel>
     </transition>
 
