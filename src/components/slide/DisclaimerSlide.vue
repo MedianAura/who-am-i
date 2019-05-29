@@ -34,7 +34,7 @@ export default class DisclaimerSlide extends Vue {
 <style scoped lang="scss">
 .slide-content {
   cursor: pointer;
-  
+
   ol {
     li {
       opacity: 0;

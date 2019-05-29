@@ -97,14 +97,14 @@ export default class QuestionPanel extends Vue {
 .slide {
   .slide-content {
     height: 450px;
-    
+
     .options {
       margin: 15px 0;
       background-color: #7a7978;
       border-radius: 10px;
       padding: 5px 0;
       height: 100px;
-    
+
       .column.small {
         width: 70px;
         text-align: center;
