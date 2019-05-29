@@ -11,7 +11,8 @@
     <transition
       name="custom-classes-transition"
       enter-active-class="animated tada"
-      leave-active-class="animated bounceOutRight" mode="out-in"
+      leave-active-class="animated bounceOutRight"
+      mode="out-in"
     >
       <div class="slide slide-0" v-if="displaySlide(0)"></div>
 
@@ -19,10 +20,40 @@
 
       <WelcomeSlide v-if="displaySlide(2)" />
 
-      <QuestionPanel :questions="nextSet" @selected="addQuestion" v-if="displaySlide(3)"></QuestionPanel>
+      <QuestionPanel
+        :questions="nextSet"
+        :count="questionCount"
+        @selected="addQuestion"
+        @next="nextQuestion"
+        v-if="displaySlide(3)"
+      ></QuestionPanel>
+
+      <div class="slide" v-if="displaySlide(4)">
+        <div class="slide-content">
+          <h3>Autre questions</h3>
+          <ol>
+            <li v-for="(question, ndx) in questions" :key="ndx">
+              {{ question }}
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="slide" v-if="displaySlide(5)">
+        <div class="slide-content has-text-centered">
+          <h3>Credit</h3>
+          <ul>
+            <li>Animateur : Moi ............... Sébastien Lafleur</li>
+            <li>Invité : Moi ............... Sébastien Lafleur</li>
+            <li>Producteur : Moi ............... Sébastien Lafleur</li>
+            <li>Animation : Moi ............... Sébastien Lafleur</li>
+            <li>Camera : Vous ............... Assistance</li>
+          </ul>
+        </div>
+      </div>
     </transition>
 
-    <button class="button is-primary is-outlined slide-control next-slide" v-if="currentSlide < 7" @click="nextSlide">
+    <button class="button is-primary is-outlined slide-control next-slide" v-if="currentSlide < 5" @click="nextSlide">
       <i class="fas fa-angle-double-down"></i>
     </button>
   </div>
@@ -40,6 +71,7 @@ import WelcomeSlide from '@/components/slide/WelcomeSlide.vue'
 })
 export default class GamePanel extends Vue {
   public currentSlide: number = 0
+  public questionCount: number = 1
   public questions: string[] = [
     'Quel est ton parcours professionnel ?',
     'Quel est ton parcours scolaires ?',
@@ -52,13 +84,13 @@ export default class GamePanel extends Vue {
     'Est-ce que tu as des livres que tu préfère ?',
     'Quel est ton type de cuisine préferer ?',
     'Autre intérèt en informatique ?',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
+    "Qu'est ce que tu aimerais le plus accomplir en informatique ?",
+    'Pourquoi les cheveux long ?',
+    'Quel serait ton voyage de rêve ?',
+    'Quel activité la plus extravageante que tu aimerais faire ?',
+    'Pourquoi ton averssion pour les vacances ?',
+    'Quel de tes sens pourrais tu accepter de perdre ?',
+    'Est ce que tu as une phobie ?',
     '19',
     '20'
   ]
@@ -78,12 +110,20 @@ export default class GamePanel extends Vue {
   }
 
   public nextSlide(e: any): void {
-    this.currentSlide = min([++this.currentSlide, 7])
+    this.currentSlide = min([++this.currentSlide, 5])
     e.target.blur()
   }
 
   public addQuestion(questions: string[]): void {
     this.questions = this.questions.concat(questions)
+  }
+
+  public nextQuestion(): void {
+    this.questionCount++
+    if (this.questionCount > 10) {
+      return
+    }
+    this.nextSet = this.createSubset()
   }
 
   public createSubset(): string[] {
