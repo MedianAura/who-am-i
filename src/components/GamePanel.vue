@@ -62,7 +62,7 @@
       </div>
     </transition>
 
-    <button class="button is-primary is-outlined slide-control next-slide" v-if="currentSlide < 5" @click="nextSlide">
+    <button class="button is-primary is-outlined slide-control next-slide" v-if="currentSlide < 6" @click="nextSlide">
       <i class="fas fa-angle-double-down"></i>
     </button>
   </div>
