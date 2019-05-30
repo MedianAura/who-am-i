@@ -9,7 +9,7 @@
           enter-active-class="animated zoomIn"
           leave-active-class="animated zoomOut"
         >
-          <li v-for="(question, key) in currentQuestions()" :key="key" @click="openDoor(key)">
+          <li v-for="(question, key) in currentQuestions()" :key="question" @click="openDoor(key)">
             <div class="columns options">
               <div class="column is-1 small">{{ key + 1 }}</div>
               <div class="column" style="position: relative">

@@ -49,6 +49,15 @@
             <li>Animation : Moi ............... Sébastien Lafleur</li>
             <li>Camera : Vous ............... Assistance</li>
           </ul>
+
+          <h3>Making of</h3>
+          <p>40+ heures de programmation.</p>
+        </div>
+      </div>
+
+      <div class="slide" v-if="displaySlide(6)">
+        <div class="slide-content has-text-centered">
+          <h1>Merci</h1>
         </div>
       </div>
     </transition>
@@ -74,25 +83,24 @@ export default class GamePanel extends Vue {
   public questionCount: number = 1
   public questions: string[] = [
     'Quel est ton parcours professionnel ?',
-    'Quel est ton parcours scolaires ?',
-    'Comment as tu décidé de devenir programmeur ?',
-    'Comment en es tu venu a être un fan de lutte ?',
-    "A part du badminton, est ce que tu pratique d'autre sport ?",
-    'Quel genre de gamer es tu ?',
-    'Quel sont tes série télévision préferer ?',
-    'Quel sont tes films préferer ?',
-    'Est-ce que tu as des livres que tu préfère ?',
-    'Quel est ton type de cuisine préferer ?',
-    'Autre intérèt en informatique ?',
+    'Quel est ton parcours scolaire ?',
+    'Comment as-tu décidé de devenir programmeur ?',
+    'Comment en es-tu venu a être un "fan" de lutte ?',
+    "À l'exception du badminton, est-ce que tu pratiques d'autres sports ?",
+    'Est-ce que tu es un "gamer" ?',
+    'Quel sont tes séries télévision préférer ?',
+    'Quel sont tes films préférer ?',
+    'Est-ce que tu as des livres que tu préfères ?',
+    'Quel est ton type de cuisine préférer ?',
+    'Autre intérêt en informatique ?',
     "Qu'est ce que tu aimerais le plus accomplir en informatique ?",
-    'Pourquoi les cheveux long ?',
+    'Pourquoi les cheveux longs ?',
     'Quel serait ton voyage de rêve ?',
-    'Quel activité la plus extravageante que tu aimerais faire ?',
-    'Pourquoi ton averssion pour les vacances ?',
-    'Quel de tes sens pourrais tu accepter de perdre ?',
-    'Est ce que tu as une phobie ?',
-    '19',
-    '20'
+    'Quelle activité la plus extravagante que tu aimerais faire ?',
+    'Pourquoi ton aversion pour les vacances ?',
+    'Quel de tes sens pourrais-tu accepter de perdre ?',
+    'Est-ce que tu as des phobies ?',
+    'Quel est ton genre de musique préférer ?'
   ]
   public nextSet: string[] = []
 
@@ -110,7 +118,7 @@ export default class GamePanel extends Vue {
   }
 
   public nextSlide(e: any): void {
-    this.currentSlide = min([++this.currentSlide, 5])
+    this.currentSlide = min([++this.currentSlide, 6])
     e.target.blur()
   }
 

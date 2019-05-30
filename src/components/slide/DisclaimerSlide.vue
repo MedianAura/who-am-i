@@ -2,17 +2,21 @@
   <div class="slide">
     <div class="slide-content" @click="increaseNdx">
       <h2>Disclaimer :</h2>
-      <ol>
-        <li :class="{ visible: ndx >= 1 }">Il n'y aura aucun photo dans cette présentation.</li>
+      <transition-group tag="ol" name="custom-classes-transition" enter-active-class="animated lightSpeedIn">
+        <li :key="1" v-if="ndx >= 1">Il n'y aura aucune photo dans cette présentation.</li>
 
-        <li :class="{ visible: ndx >= 2 }">La présence de faute d'orthographe est une possibilité.</li>
+        <li :key="2" v-if="ndx >= 2">La présence de faute d'orthographe est une possibilité.</li>
 
-        <li :class="{ visible: ndx >= 3 }">Je ne tiens pas tant que ça a devenir camionneur.</li>
+        <li :key="3" v-if="ndx >= 3">Je ne tiens pas tant que ça à devenir camionneur.</li>
 
-        <li :class="{ visible: ndx >= 4 }">
-          Moi et Serge pourrions surement nous recycler cependant comme propriétaire du Shack : Bob la Patate
+        <li :key="4" v-if="ndx >= 4">
+          Moi et Serge pourrions surement nous recycler cependant comme propriétaire du Shack : Bob la Patate.
         </li>
-      </ol>
+
+        <li :key="5" v-if="ndx >= 5">
+          Chaque fois que je crois avoir une bonne idée pour une présentation. Je trouve une façon de la ruiner...
+        </li>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -26,7 +30,7 @@ export default class DisclaimerSlide extends Vue {
   public ndx: number = 0
 
   public increaseNdx(): void {
-    this.ndx = min([++this.ndx, 4])
+    this.ndx = min([++this.ndx, 5])
   }
 }
 </script>
@@ -34,16 +38,6 @@ export default class DisclaimerSlide extends Vue {
 <style scoped lang="scss">
 .slide-content {
   cursor: pointer;
-
-  ol {
-    li {
-      opacity: 0;
-    }
-
-    li.visible {
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
-  }
+  height: 500px;
 }
 </style>
